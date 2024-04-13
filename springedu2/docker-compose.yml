@@ -1,0 +1,47 @@
+services:
+  mysqledu:
+    image: mysql
+    container_name: mysqledu
+    networks:
+      - edunet
+    volumes:
+      - mysqleduvol:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: edudb
+      MYSQL_USER: jdbctest
+      MYSQL_PASSWORD: jdbctest
+    ports:
+      - 3306:3306
+
+  springedu2:
+    depends_on:
+      - mysqledu
+    container_name: c_springedu2
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    networks:
+      - edunet
+    ports:
+      - 9095:9090
+    restart: on-failure
+
+  springedu:
+    depends_on:
+      - mysqledu
+    container_name: c_springedu
+    build:
+      context: ./../springedu
+      dockerfile: Dockerfile
+    networks:
+      - edunet
+    ports:
+      - 8085:8080
+    restart: on-failure
+
+networks:
+  edunet:
+volumes:
+  mysqleduvol:
