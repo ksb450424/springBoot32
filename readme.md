@@ -46,7 +46,7 @@
 
 <br>
 
-#### 1-2-1-2. 메이븐(Maven) 관련 명령
+#### 1-2-1-2. 메이븐(Maven) 명령
 
 | 명령어 | 설명 |
 |---------------------|---------------------------------------------|
@@ -99,11 +99,75 @@
 | -V,--show-version | 빌드를 중단하지 않고 버전 정보 표시 |
 | -X,--debug | 실행 디버그 출력 생성 |
 
+<br>
+
+##### 현재 프로젝트 컴파일
+
+- 현재 프로젝트를 컴파일하여 컴파일 된 결과인 .class를 target/classes에 생성합니다.
 
 ```command
-
+mvn compile
 ```
 
+<br>
+
+##### 현재 프로젝트 테스트
+
+- 테스트 클래스 컴파일한 뒤 테스트 코드를 실행합니다.
+- 테스트 클래스들은 target/test-classes 디렉터리에 생성됩니다.
+- 테스트 결과 리포트는 target/surefire-reports에 생성됩니다.
+
+```command
+mvn test
+```
+
+<br>
+
+##### 현재 프로젝트 패키징
+
+- 컴파일, 테스트, 빌드를 한 꺼번에 수행하여 패키지 파일을 생성합니다.
+- 프로젝트 이름, 버전, 패키징 옵션에 맞게 파일이 생성됩니다.
+- pom에서 아래와 같이 설정하면 결과 파일은 donggov-1.0-SNAPSHOT.war 로 생성된다.
+
+```xml
+  <artifactId>donggov</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>war</packaging>
+```
+
+```command
+mvn package
+```
+
+<br>
+
+##### 패키징된 프로젝트를 배포
+
+- 패키징한 파일을 로컬 저장소에 배포
+
+```command
+mvn install
+```
+
+<br>
+
+##### 원격 저장소에 배포
+
+- 패키징한 파일을 원격 저장소에 배포 (nexus 혹은 maven central 저장소)
+
+```command
+mvn deploy
+```
+
+<br>
+
+##### 빌드된 프로젝트 제거
+
+- 메이븐 빌드를 통하여 생성된 모든 산출물을 삭제합니다.
+
+```command
+mvn clean
+```
 
 <br><br>
 
@@ -139,5 +203,80 @@ Java 문법과 유사하여 빌드 처리를 관리할 수 있다.
 - Configuration(설정) : 빌드에 참여하게 된 모든 프로젝트의 빌드 스크립트가 실행되며, 필요한 내용을 설정하는 단계로 프로젝트 정보는 settings.gradle에 있으며, 종속성 라이브러리는 build.gradle 에서 설정하며, 실행에 필요한 정보는 application.properties 에서 설정합니다.
 - Execution(실행) : 그레이들(Gradle)은 구성 단계에서 생성 및 구성된 태스크의 하위 집합을 결정합니다. 하위 집합은 현재 디렉토리와 gradle 명령어에 넘겨진 인수에 의해 결정됩니다. 그리고 선택된 태스크들을 실행합니다.
 
+<br>
 
+#### 1-2-2-2. 그레이들(Gradle) 명령
+
+##### 그레이들(Gradle) 버전 확인
+
+```command
+gradle --version
+```
+
+<br>
+
+##### Gradle 프로젝트 생성
+
+- 프로젝트에 필요한 초기 환경을 구성하되, 타입을 주지 않는 경우 아래의 절차대로 진행하며, 타입을 줄 경우 'build script DSL' 절차부터 진행됩니다.
+
+```comment
+gradle init [--type 타입명]
+```
+
+```command
+gradle init --type java-application
+```
+
+<br>
+
+##### 그레이들 작업 정보 확인
+
+```command
+gradle tasks
+```
+
+<br>
+
+##### 현재 프로젝트 빌드
+
+- 현재 프로젝트를 컴파일(빌드) 하되, build.gradle에 apply plugin: 'java'가 추가된 경우 .jar파일로 패키징까지 됩니다.
+- 컴파일된 파일들은 'app > build' 폴더 안에 생성되며, .jar파일은 'build > libs'에 패키징됩니다.
+
+```command
+gradle build
+```
+
+<br>
+
+##### 현재 프로젝트 실행
+
+- 컴파일 후 메인클래스를 실행한다.
+- 스프링부트의 경우 gradle bootRun을 통해 앱을 구동할 수 있다.
+
+```command
+gradle run
+```
+
+<br>
+
+##### 현재 프로젝트 패키징
+
+- 프로그램을 .jar로 패키징하며, 'build > libs'에 생성됩니다.
+- apply plugin: 'java'가 추가된 경우 build 명령으로 해결가능합니다.
+
+```command
+gradle jar
+```
+
+<br>
+
+##### 현재 프로젝트 빌드 정보 지우기
+
+- build 폴더를 제거하여, 빌드 이전 상태로 되돌린다.
+
+```command
+gradle clean
+```
+
+<br><br>
 
