@@ -278,5 +278,61 @@ gradle jar
 gradle clean
 ```
 
+<br><br><br>
+
+## 1-3. Spring Boot 개발환경 구축
+
+<br><br>
+
+### 1-3-1. 자바의 설치
+
+<br>
+
+### 1-3-2. 자바의 환경 설정
+
+<br><br>
+
+## 1-4. 통합 개발 환경 (IDE : Integrated Development Environment) 구축
+
+<br>
+
+### 1-4-1. IntelliJ 설치
+
+<br>
+
+### 1-4-2. IntelliJ 환경 설정
+
+<br>
+
+### 1-4-3. STS(Springframework Tool Suite) 설치
+
+<br>
+
+### 1-4-4. STS(Springframework Tool Suite) 환경 설정
+
+<br>
+
+### 1-4-5. VSC(Visual Studio Code) 설치
+
+<br>
+
+### 1-4-6. VSC(Visual Studio Code) 환경 설정
+
+<br><br>
+
+## 1-5. 새 프로젝트 만들기
+
+<br>
+
+### 1-5-1. IntelliJ 에서 새 프로젝트 만들기
+
+<br>
+
+### 1-5-2. STS 에서 새 프로젝트 만들기
+
+<br>
+
+### 1-5-3. Visual Studio Code 에서 새 프로젝트 만들기
+
 <br><br>
 
